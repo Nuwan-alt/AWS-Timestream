@@ -1,0 +1,59 @@
+# Kafka broker list
+#KAFKA_BROKERS: b-1.kafkafeedqa.oextb6.c3.kafka.ap-south-1.amazonaws.com:9092,b-2.kafkafeedqa.oextb6.c3.kafka.ap-south-1.amazonaws.com:9092
+KAFKA_BROKERS: b-1.alertservice-qa.rupusj.c3.kafka.ap-south-1.amazonaws.com:9092,b-2.alertservice-qa.rupusj.c3.kafka.ap-south-1.amazonaws.com:9092
+
+# Kafka client id
+KAFKA_CLIENT_ID: client12
+
+# Kafka topic list
+KAFKA_TOPICS: ohlc,ohlc5,ohlc15,ohlc30,ohlc60
+
+# Kafka topic name prefix
+KAFKA_TOPIC_NAME_PREFIX: ohlc
+
+# Kafka client group id
+KAFKA_GROUP_ID_CONFIG: gtn-05-29-nuwan
+
+# Kafka offset reset
+KAFKA_OFFSET_RESET_EARLIER: earliest
+
+# Kafka consumer max poll
+KAFKA_MAX_POLL_RECORDS: 100
+
+# Kafka sequence start
+KAFKA_SEQUENCE_START: "false"
+
+PRICE_DB_DRIVER: org.postgresql.Driver
+PRICE_DB_URL: jdbc:postgresql://172.18.30.60:5444/dfnmkt?currentSchema=dfn_market_data
+PRICE_DB_USER: mubasher
+PRICE_DB_PASSWORD: password
+
+#Log4j logger Details
+log.server.threshold: DEBUG
+log.client.threshold: DEBUG
+log.console.threshold: DEBUG
+
+DB_UPDATER_INTVL_MS: 1000
+INTERVALS: 1,5,15,30,60
+
+IS_FILTER_BY_EXCHANGE_ENABLED: "1"
+#EXCHANGE_LIST: NSDQOT,COMEX,AMEX,EUREX,NSDQBB,GTISPM,NYMEX,NYSEIDX,XETRA,DJI,NYSE,CBOTEMIN,CBOEIDX,NSDQGI,GBLSEI,FTSE,GTISEP,S&P,NSDQ,CME,CBOT,PFX,GLOBAL,HSTCIDX,XSTC,HKEX,XIDX,XPHS,XBKK,SGX,XTKS,HSTC,XNZE,XTAI,XKRX,XASX,CNSGSE,XSHE,XKLS,SGSEIDX,IJSXIDX,XTAIIDX,ASXOP,XNZEIDX,XTKEIDX,XBKKIDX,XTKSIDX,XSTCIDX,XASXIDX,XPHSIDX,XSHEIDX,HKHSIDX,CFTSEIDX,CINAVIDX,CCRPTIDX,HKEXIDX,BMIDX,GLOBAL,CASE,FDM,ADSM,TDWL,LKCSE,MSM,ASE,BSE,CSE,DFM,DSE,DSM,ISE,KSE,TNTSE,ADXIDX
+EXCHANGE_LIST: PFX,NSDQOT,NSDQ,TSXV
+  #This is use when restarting to identify at which time need start db-write from replay points (other points have trade time less than that will be discarded)
+#ex: if current time 10:15 GMT, current hour = 10:00 GMT. so it will start re-calculation from 7:00 GMT (10-3) onwards
+BACK_HOURS_WHEN_RESTART: 3
+
+
+# ======= TIMESTREAM =======
+DATABASE_NAME: "feedOHLC"
+TABLE_NAME: "GTNOHLC"
+
+MAX_THREADS: "12"
+
+TABLE_MAP: "AF,GL,MR,SX,Y4,50"
+# ( a/A - z/Z  + 0-9 ) all 36 characters
+EQUAL_EXCHANGE_DIVISIONS: 6
+#for adding data to test database TEST_ENABLE: "TEST-"
+TEST_ENABLE: ""
+
+FLUSH_DISABLE: True

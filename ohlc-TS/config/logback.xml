@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <timestamp key="startTimestamp" datePattern="yyyy-MM-dd"/>
+    <property name="LOG_PATH" value="./logs"/>
+    <property name="LOG_FILE" value="ServerLog"/>
+    <property name="pattern-min" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%class] [%thread] \(%logger\) - %msg%n"/>
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level \(%thread\) \(%logger\) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="KafkaData"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/KafkaData.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream/KafkaData-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <appender name="KafkaSummary"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/kafkaSummary.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream/kafkaSummary-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <appender name="mappedSummery"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/mappedSummery.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream/mappedSummery-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+
+    <appender name="uploadedData"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/uploadedData.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream/uploadData-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <appender name="uploadedSummery"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/uploadedSummery.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream/uploadedSummery-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+
+    <appender name="rejectedSummery"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/rejectedSummery.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream/rejectedSummery-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <appender name="rejectedData"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/rejectedData.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream/rejectedData-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <appender name="batchUploadStatus"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/batchUploadStatus.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream/batchUploadStatus-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="Console"/>
+    </root>
+
+<!--    ================== custom loggers ==============-->
+
+    <logger name="KafkaData" level="trace" additivity="false">
+        <appender-ref ref="KafkaData"/>
+    </logger>
+
+    <logger name="KafkaSummary" level="debug" additivity="false">
+        <appender-ref ref="KafkaSummary"/>
+    </logger>
+
+    <logger name="uploadedData" level="trace" additivity="false">
+        <appender-ref ref="KafkaData"/>
+    </logger>
+
+    <logger name="uploadedSummery" level="debug" additivity="false">
+        <appender-ref ref="KafkaData"/>
+
+    </logger>
+
+    <logger name="rejectedSummery" level="debug" additivity="false">
+        <appender-ref ref="rejectedSummery"/>
+    </logger>
+
+    <logger name="rejectedData" level="trace" additivity="false">
+        <appender-ref ref="rejectedData"/>
+    </logger>
+
+    <logger name="batchUploadStatus" level="info" additivity="false">
+        <appender-ref ref="batchUploadStatus"/>
+    </logger>
+
+    <logger name="mappedSummery" level="trace" additivity="false">
+        <appender-ref ref="mappedSummery"/>
+    </logger>
+
+<!--    ================================================  -->
+
+    <logger name="org.ohlcTS.KafkaManager" level="info" additivity="false">
+        <appender-ref ref="Kafka-Manager"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <logger name="org.ohlcTS.ServiceManager" level="info" additivity="false">
+        <appender-ref ref="TS-reject-data"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+
+</configuration>

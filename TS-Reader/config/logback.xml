@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <timestamp key="startTimestamp" datePattern="yyyy-MM-dd"/>
+    <property name="LOG_PATH" value="./logs"/>
+    <property name="LOG_FILE" value="ServerLog"/>
+    <property name="pattern-min" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level [%class] [%thread] - %msg%n"/>
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %-5level \(%thread\) \(%logger\) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="progressEval"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/progressEval.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream-reader/progressEval-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <appender name="hitQuires"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/hitQuires.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream-reader/hitQuires-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <appender name="queries"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/queries.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream-reader/queries-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <appender name="results"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/results.log</file>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${pattern-min}</pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/backup/Time-stream-reader/results-%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>200MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--            <maxHistory>7</maxHistory>-->
+        </rollingPolicy>
+    </appender>
+
+    <logger name="results" level="info" additivity="false">
+        <appender-ref ref="results"/>
+    </logger>
+
+    <logger name="queries" level="info" additivity="false">
+        <appender-ref ref="queries"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <logger name="progressEval" level="info" additivity="false">
+        <appender-ref ref="progressEval"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <logger name="hitQuires" level="trace" additivity="false">
+        <appender-ref ref="hitQuires"/>
+        <appender-ref ref="Console"/>
+    </logger>
+</configuration>
